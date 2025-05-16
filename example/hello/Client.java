@@ -39,6 +39,7 @@ package example.hello;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Scanner;
 
 public class Client {
 
@@ -54,7 +55,39 @@ public class Client {
             System.out.println("Registry has been located");
             Hello stub = (Hello) registry.lookup("Hello");
             System.out.println("Found server");
-            String response = stub.sayHello();
+
+            Scanner sc = new Scanner(System.in);
+
+            while (true){
+                System.out.print("Digite comando (sayHello | uppercase texto | lowercase texto | reverse texto) ou 'sair': ");
+                String line = sc.nextLine().trim();
+
+                if (line.equalsIgnoreCase("sair")){
+                    break;
+                }
+
+                String[] parts = line.split("\\s+",2);
+                String cmd = parts[0];
+                String arg = parts.length > 1 ? parts[1] : "";
+                String response;
+
+                switch (cmd){
+                    case "sayHello":
+                        response = stub.sayHello();
+                        break;
+                    case "uppercase":
+                        response = stub.uppercase();
+                        break;
+                    case "lowercase":
+                        response = stub.lowercase();
+                        break;
+                    case  "reverse":
+                        response = stub.reverse();
+                        break;
+                    default:
+                        response = "Invalid Command";
+                }
+            }
             System.out.println("response: " + response);
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());

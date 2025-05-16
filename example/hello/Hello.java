@@ -42,4 +42,9 @@ import java.rmi.RemoteException;
 
 public interface Hello extends Remote {
     String sayHello() throws RemoteException;
+
+    String uppercase(String texto) throws RemoteException;
+    String lowercase(String texto) throws RemoteException;
+    String reverse(String texto)   throws RemoteException;
 }
+

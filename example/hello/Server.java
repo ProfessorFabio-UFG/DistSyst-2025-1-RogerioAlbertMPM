@@ -50,6 +50,17 @@ public class Server implements Hello {
         return "Hello, world!";
     }
 
+    public String uppercase(String texto){
+        return texto.toUpperCase();
+    }
+
+    public String lowercase(String texto){
+        return texto.toLowercase();
+    }
+
+    public String reverse(String texto){
+        return new StringBuilder(texto).reverse().toString();
+    }
     public static void main(String args[]) {
 
         try {
